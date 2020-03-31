@@ -9,4 +9,5 @@ cookbook 'ndb', github: "logicalclocks/ndb-chef", branch: "1.1"
 cookbook 'conda', github: "logicalclocks/conda-chef", branch: "1.1"
 
 cookbook 'kzookeeper', github: "logicalclocks/kzookeeper", branch: "1.1"
+cookbook 'ulimit', github: "logicalclocks/chef-ulimit", branch: "1.1"
 
