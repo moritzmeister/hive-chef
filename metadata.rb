@@ -14,6 +14,12 @@ depends 'compat_resource', '~> 12.7.3'
 depends 'ulimit', '~> 0.4.0'
 depends 'authbind', '~> 0.1.10'
 depends 'ntp', '~> 2.0.0'
+depends 'kagent'
+depends 'hops'
+depends 'ndb'
+depends 'conda'
+depends 'kzookeeper'
+depends 'consul'
 
 
 recipe           "install", "Installs a Hive2 Server"
