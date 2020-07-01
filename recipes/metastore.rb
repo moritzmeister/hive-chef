@@ -22,6 +22,7 @@ bash "set_warehouse_storage_type" do
     #{node['hops']['bin_dir']}/hdfs storagepolicies -setStoragePolicy -path #{node['hive2']['hopsfs_dir']}/warehouse -policy DB
   EOH
   action :run
+  not_if { node['hops']['enable_cloud_storage'].casecmp?("true") } 
 end
 
 # Create hive user-dir on hdfs
