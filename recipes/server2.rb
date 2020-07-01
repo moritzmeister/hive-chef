@@ -31,13 +31,16 @@ service service_name do
   action :nothing
 end
 
+hive_metastore_fqdn = consul_helper.get_service_fqdn("metastore.hive")
+
 template systemd_script do
   source "#{service_name}.service.erb"
   owner "root"
   group "root"
   mode 0754
   variables({
-            :deps => deps
+              :deps => deps,
+              :hive_metastore_endpoint => hive_metastore_fqdn
            })
   if node['services']['enabled'] == "true"
     notifies :enable, resources(:service => service_name)

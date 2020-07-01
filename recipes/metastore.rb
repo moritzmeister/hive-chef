@@ -79,13 +79,16 @@ service service_name do
   action :nothing
 end
 
+rpc_namenode_fqdn = consul_helper.get_service_fqdn("rpc.namenode")
+
 template systemd_script do
   source "#{service_name}.service.erb"
   owner "root"
   group "root"
   mode 0754
   variables({
-            :deps => deps
+              :deps => deps,
+              :nn_rpc_endpoint => rpc_namenode_fqdn
            })
   if node['services']['enabled'] == "true"
     notifies :enable, resources(:service => service_name)

@@ -5,8 +5,10 @@ After = syslog.target network.target remote-fs.target <%= @deps %>
 [Service]
 User = <%= node['hive2']['user'] %>
 
+ExecStartPre=/bin/bash -c 'while ! /usr/bin/host <%= @nn_rpc_endpoint %> ; do /bin/sleep 5; done'
 ExecStart = <%= node['hive2']['base_dir'] %>/bin/hive --service metastore
 LimitNOFILE = 20000
+TimeoutSec= 10min
 
 Type = simple
 
