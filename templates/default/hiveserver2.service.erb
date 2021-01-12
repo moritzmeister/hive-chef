@@ -7,7 +7,6 @@ StartLimitBurst=10
 [Service]
 User = <%= node['hive2']['user'] %>
 
-ExecStartPre=/bin/bash -c 'while ! /usr/bin/host <%= @hive_metastore_endpoint %> ; do if systemctl list-units --full -all | grep -Fq 'hivemetastore'; then if systemctl is-active --quiet hivemetastore; then /bin/sleep 5; else ! break; fi; else /bin/sleep 5; fi;  done'
 ExecStart = <%= node['hive2']['base_dir'] %>/bin/hiveserver2
 LimitNOFILE = 20000
 TimeoutSec= 10min
