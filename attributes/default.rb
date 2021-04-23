@@ -5,7 +5,7 @@ include_attribute "kzookeeper"
 
 default['hive2']['user']                    = node['install']['user'].empty? ? "hive" : node['install']['user']
 default['hive2']['user-home']               = "/home/#{node['hive2']['user']}"
-default['hive2']['version']                 = "3.0.0.6"
+default['hive2']['version']                 = "3.0.0.7"
 default['hive2']['url']                     = "#{node['download_url']}/apache-hive-#{node['hive2']['version']}-bin.tar.gz"
 default['hive2']['port']                    = "9084"
 default['hive2']['portssl']                 = "9085"
@@ -46,7 +46,7 @@ default['tez']['session_per_queue']     = 100
 
 default['hive2']['conf']['mapreduce_input_size']     = "134217728"
 
-default['hive2']['hudi_version']              = "0.7.0"
+default['hive2']['hudi_version']              = "0.7.0.1"
 default['hive2']['hudi_hadoop_mr_bundle_url']     = "#{node['download_url']}/hudi/#{node['hive2']['hudi_version']}/hudi-hadoop-mr-bundle-#{node['hive2']['hudi_version']}.jar"
 
 default['hive2']['jmx']['prometheus_exporter']['version']  = "0.12.0"
