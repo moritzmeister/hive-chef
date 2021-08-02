@@ -20,6 +20,10 @@ default['hive2']['consul']                  = node['hive2']['base_dir'] + "/cons
 default['hive2']['hopsfs_dir']              = "#{node['hops']['hdfs']['apps_dir']}/hive"
 default['hive2']['scratch_dir']             = "/tmp/hive"
 
+# Data volume directories
+default['hive2']['data_volume']['root_dir'] = "#{node['data']['dir']}/apache-hive"
+default['hive2']['data_volume']['logs_dir'] = "#{node['hive2']['data_volume']['root_dir']}/logs"
+
 default['hive2']['mysql_user']              = "hive"
 default['hive2']['mysql_password']          = "hive"
 default['hive2']['mysql_connector_version'] = "8.0.21"

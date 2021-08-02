@@ -10,11 +10,23 @@ group node['hops']['secure_group'] do
 end
 
 # Logging
-directory "#{node['hive2']['logs_dir']}" do
+bash 'Move Hive logs to data volume' do
+  user 'root'
+  code <<-EOH
+    set -e
+    mv -f #{node['hive2']['logs_dir']}/* #{node['hive2']['data_volume']['logs_dir']}
+    rm -rf #{node['hive2']['logs_dir']}
+  EOH
+  only_if { conda_helpers.is_upgrade }
+  only_if { File.directory?(node['hive2']['logs_dir'])}
+  not_if { File.symlink?(node['hive2']['logs_dir'])}
+end
+
+link node['hive2']['logs_dir'] do
   owner node['hive2']['user']
   group node['hops']['group']
-  mode "0775"
-  action :create
+  mode '0775'
+  to node['hive2']['data_volume']['logs_dir']
 end
 
 template "#{node['hive2']['conf_dir']}/hive-log4j2.properties" do

@@ -34,6 +34,26 @@ group node["kagent"]["certs_group"] do
   only_if { conda_helpers.is_upgrade }
 end
 
+directory node['data']['dir'] do
+  owner 'root'
+  group 'root'
+  mode '0775'
+  action :create
+  not_if { ::File.directory?(node['data']['dir']) }
+end
+
+directory node['hive2']['data_volume']['root_dir'] do
+  owner node['hive2']['user']
+  group node['hops']['group']
+  mode '0775'
+end
+
+directory node['hive2']['data_volume']['logs_dir'] do
+  owner node['hive2']['user']
+  group node['hops']['group']
+  mode '0775'
+end
+
 package_url = "#{node['hive2']['url']}"
 base_package_filename = File.basename(package_url)
 cached_package_filename = "/tmp/#{base_package_filename}"
