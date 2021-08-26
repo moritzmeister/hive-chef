@@ -10,19 +10,14 @@ group node['hops']['group'] do
 end
 
 user node['hive2']['user'] do
+  uid node['hive2']['user_id']
+  gid node['hops']['group']
   home node['hive2']['user-home']
   action :create
   shell "/bin/bash"
   manage_home true
   system true
   not_if "getent passwd #{node['hive2']['user']}"
-  not_if { node['install']['external_users'].casecmp("true") == 0 }
-end
-
-group node['hops']['group'] do
-  action :modify
-  members node['hive2']['user']
-  append true
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 

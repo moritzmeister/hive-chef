@@ -4,6 +4,7 @@ include_attribute "hops"
 include_attribute "kzookeeper"
 
 default['hive2']['user']                    = node['install']['user'].empty? ? "hive" : node['install']['user']
+default['hive2']['user_id']                 = '1516'
 default['hive2']['user-home']               = "/home/#{node['hive2']['user']}"
 default['hive2']['version']                 = "3.0.0.9"
 default['hive2']['url']                     = "#{node['download_url']}/apache-hive-#{node['hive2']['version']}-bin.tar.gz"
@@ -38,6 +39,7 @@ default['hive2']['systemd']                              = "true"
 default['hive2']['hopsworks']['port']         = "8080"
 
 default['tez']['user']                    =  node['install']['user'].empty? ? "tez" : node['install']['user']
+default['tez']['user_id']                 = '1517'
 default['tez']['version']                 = "0.9.1.3"
 default['tez']['url']                     = "#{node['download_url']}/apache-tez-#{node['tez']['version']}.tar.gz"
 default['tez']['dir']                     =  node['install']['dir'].empty? ? "/srv" : node['install']['dir']

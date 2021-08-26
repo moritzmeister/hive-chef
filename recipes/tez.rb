@@ -8,17 +8,12 @@ end
 
 user node['tez']['user'] do
   home "/home/#{node['tez']['user']}"
+  uid node['tez']['user_id']
+  gid node['hops']['group']
   action :create
   shell "/bin/bash"
   manage_home true
   not_if "getent passwd #{node['tez']['user']}"
-  not_if { node['install']['external_users'].casecmp("true") == 0 }
-end
-
-group node['hops']['group'] do
-  action :modify
-  members ["#{node['tez']['user']}"]
-  append true
   not_if { node['install']['external_users'].casecmp("true") == 0 }
 end
 
