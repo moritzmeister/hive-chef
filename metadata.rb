@@ -4,7 +4,7 @@ maintainer_email "jdowling@kth.se"
 license          "Apache v2"
 description      'Installs/Configures Hive Server'
 long_description IO.read(File.join(File.dirname(__FILE__), 'README.md'))
-version          "2.4.0"
+version          "2.5.0"
 source_url       "https://github.com/hopshadoop/hive-chef"
 
 
