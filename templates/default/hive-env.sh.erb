@@ -57,8 +57,9 @@ export TEZ_CONF_DIR=<%= node['tez']['conf_dir'] %>
 export TEZ_JARS=<%= node['tez']['base_dir'] %>
 export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:$TEZ_CONF_DIR:$TEZ_JARS/*:$TEZ_JARS/lib/*
 
-export HIVESERVER2_HADOOP_OPTS="-javaagent:<%= node['hive2']['hopsworks_jars'] %>/jmx_prometheus_javaagent-<%= node['hive2']['jmx']['prometheus_exporter']['version'] %>.jar=<%= node['hive2']['hs2']['metrics_port'] %>:<%= node['hive2']['conf_dir'] %>/hiveserver2.yaml -Dlog4j2.formatMsgNoLookups=true"
-export HIVE_METASTORE_HADOOP_OPTS="-javaagent:<%= node['hive2']['hopsworks_jars'] %>/jmx_prometheus_javaagent-<%= node['hive2']['jmx']['prometheus_exporter']['version'] %>.jar=<%= node['hive2']['hm']['metrics_port'] %>:<%= node['hive2']['conf_dir'] %>/hivemetastore.yaml -Dlog4j2.formatMsgNoLookups=true"
+export HIVESERVER2_HADOOP_OPTS="-Xmx<%= node['hive2']['server']['xmx'] %> -Xms<%= node['hive2']['server']['xms'] %> -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=65 -XX:+UseCMSInitiatingOccupancyOnly -javaagent:<%= node['hive2']['hopsworks_jars'] %>/jmx_prometheus_javaagent-<%= node['hive2']['jmx']['prometheus_exporter']['version'] %>.jar=<%= node['hive2']['hs2']['metrics_port'] %>:<%= node['hive2']['conf_dir'] %>/hiveserver2.yaml -Dlog4j2.formatMsgNoLookups=true"
+
+export HIVE_METASTORE_HADOOP_OPTS="-Xmx<%= node['hive2']['metastore']['xmx'] %> -Xms<%= node['hive2']['metastore']['xms'] %> -XX:+UseConcMarkSweepGC -XX:CMSInitiatingOccupancyFraction=65 -XX:+UseCMSInitiatingOccupancyOnly -javaagent:<%= node['hive2']['hopsworks_jars'] %>/jmx_prometheus_javaagent-<%= node['hive2']['jmx']['prometheus_exporter']['version'] %>.jar=<%= node['hive2']['hm']['metrics_port'] %>:<%= node['hive2']['conf_dir'] %>/hivemetastore.yaml -Dlog4j2.formatMsgNoLookups=true"
 
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
 export HIVE_AUX_JARS_PATH=<%= node['hive2']['hopsworks_jars'] %>

@@ -65,24 +65,28 @@ attribute "hive2/mysql_password",
           :dscription => "mysql user account for hive",
           :type => "string"
 
-attribute "hive2/metastore/private_ips",
-          :description => "Set ip addresses",
-          :type => "array"
-
-attribute "hive2/default/private_ips",
-          :description => "Set ip addresses",
-          :type => "array"
-
-attribute "hive2/server2/private_ips",
-          :description => "Set ip addresses",
-          :type => "array"
-
 attribute "hive2/metastore/port",
           :description => "metastore port",
           :type => "string"
 
 attribute "hive2/metastore/enforce_authority",
           :description => "Enforce warehouse authority to be the same as the one specified in the metastore.warehouse.dir option (default true)",
+          :type => "string"
+
+attribute "hive2/server/xmx",
+          :description => "Xmx configuration for hive server2 (default: 2g)",
+          :type => "string"
+
+attribute "hive2/server/xms",
+          :description => "Xms configuration for hive server2 (default: 2g)",
+          :type => "string"
+
+attribute "hive2/metastore/xmx",
+          :description => "Xmx configuration for hive metastore (default: 2g)",
+          :type => "string"
+
+attribute "hive2/metastore/xms",
+          :description => "Xms configuration for hive metastore (default: 2g)",
           :type => "string"
 
 attribute "hive2/scratch_dir",

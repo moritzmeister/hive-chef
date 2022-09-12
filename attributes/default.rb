@@ -31,6 +31,10 @@ default['hive2']['mysql_connector_version'] = "8.0.21"
 default['hive2']['mysql_connector_url']     = "#{node['download_url']}/mysql-connector-java-#{node['hive2']['mysql_connector_version']}-bin.jar"
 default['hive2']['mysql_connector_checksum'] = "2f62d886270a75ebc8e8fd89127d4a30ccc711f02256ade2cfb7090817132003"
 
+default['hive2']['server']['xmx']                             = "2g"
+default['hive2']['server']['xms']                             = "2g"
+default['hive2']['metastore']['xmx']                          = "2g"
+default['hive2']['metastore']['xms']                          = "2g"
 
 default['hive2']['metastore']['port']                    = "9083"
 default['hive2']['metastore']['enforce_authority']       = "true"
@@ -60,3 +64,4 @@ default['hive2']['jmx']['prometheus_exporter']['url']      = "#{node['download_u
 
 default['hive2']['hs2']['metrics_port']                    = "18001"
 default['hive2']['hm']['metrics_port']                     = "18002"
+
