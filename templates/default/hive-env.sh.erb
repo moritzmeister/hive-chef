@@ -63,3 +63,7 @@ export HIVE_METASTORE_HADOOP_OPTS="-Xmx<%= node['hive2']['metastore']['xmx'] %> 
 
 # Folder containing extra libraries required for hive compilation/execution can be controlled by:
 export HIVE_AUX_JARS_PATH=<%= node['hive2']['hopsworks_jars'] %>
+
+<% if not node['install']['tmp_directory'].eql?("") %>
+export HIVESERVER2_HADOOP_OPTS=$HIVESERVER2_HADOOP_OPTS' -Djava.io.tmpdir=<%= node['install']['tmp_directory'] %>'
+<% end %>
