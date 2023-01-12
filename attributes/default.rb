@@ -6,7 +6,7 @@ include_attribute "kzookeeper"
 default['hive2']['user']                    = node['install']['user'].empty? ? "hive" : node['install']['user']
 default['hive2']['user_id']                 = '1516'
 default['hive2']['user-home']               = "/home/#{node['hive2']['user']}"
-default['hive2']['version']                 = "3.0.0.12"
+default['hive2']['version']                 = "3.0.0.12-SNAPSHOT"
 default['hive2']['url']                     = "#{node['download_url']}/apache-hive-#{node['hive2']['version']}-bin.tar.gz"
 default['hive2']['port']                    = "9084"
 default['hive2']['portssl']                 = "9085"
